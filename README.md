@@ -90,7 +90,7 @@ src/
 
 Clone the repository:
 
-git clone https://github.com/your-username/ASTify.git
+git clone https://github.com/Idraezy/ATSify.git
 cd ASTify
 
 
