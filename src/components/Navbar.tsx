@@ -1,35 +1,11 @@
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';
-import { Link } from '../router';
-import { useState, useEffect } from 'react';
+import { Link } from '../router.tsx'
 import profilePicture from '../assets/profile-picture.jpg';
 import { useTheme } from '../context/ThemeContext';
 
 export const Navbar = () => {
-  const [time, setTime] = useState(''); 
   const { theme, toggleTheme } = useTheme();
-
-  
-  useEffect(() => {
-    const updateTime = () => {
-      const hour = new Date().getHours();
-
-      if (hour >= 5 && hour < 12) {
-        setTime('HOPE YOUR MORNING FEELS FRESH☀️');
-      } else if (hour >= 12 && hour < 17) {
-        setTime('KEEP THE MOMENTUM GOING⚡');
-      } else if (hour >= 17 && hour < 21) {
-        setTime('A COOL AND RELAXING EVENING TO YOU😉');
-      } else {
-        setTime('THE NIGHT IS CALM, HOPE YOU ARE TOO⭐');
-      }
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 60000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <motion.nav
@@ -40,6 +16,7 @@ export const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
+          {/* Left: Logo */}
           <Link
             to="/"
             className="flex items-center gap-3 text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
@@ -49,15 +26,11 @@ export const Navbar = () => {
               alt="profile"
               className="w-8 h-8 rounded-full object-cover shadow-sm"
             />
-
-            <span>ATS Pro</span>
+            <span>ATS</span>
           </Link>
 
-          <div className="flex items-center gap-6">
-            <span className="text-gray-700 dark:text-gray-300 font-medium">
-              {time}
-            </span>
-
+          {/* Right: Links + Theme Toggle */}
+          <div className="flex items-center gap-4">
             <Link
               to="/"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
@@ -69,7 +42,7 @@ export const Navbar = () => {
               to="/upload"
               className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium"
             >
-              Upload Resume
+              Upload
             </Link>
 
             <button
@@ -90,6 +63,3 @@ export const Navbar = () => {
     </motion.nav>
   );
 };
-
-
-
